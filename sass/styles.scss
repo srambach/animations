@@ -7,12 +7,22 @@ $gray:            #d1d1d1;
 $gray-dark:       #bbbbbb;
 $red:             #cc0000;
 $red-dark:        #a30000;
+$blue:            #39a5dc;
+
+$z-index-header:  5000;
+$z-index-list:    1000;
+$z-index-detail:  2000;
 
 // Reset
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: $gray-light;
+  height: 100vh;
 }
 
 
@@ -24,6 +34,7 @@ $red-dark:        #a30000;
 }
 
 
+
 // Colors
 .box--red { background:          $red;        }
 .box--red-dark { background:     $red-dark;   }
@@ -33,29 +44,39 @@ $red-dark:        #a30000;
 .box--white { background:        white;       }
 
 
+
 // Shapes
 .box--circle {
   border-radius: 50%;
-  // padding-top: 100%;
 }
 
 .box--square {
   padding-top: 100%;
 }
 
+
+
+
 // Navbar
 header {
-  animation: slide-down .2s ease-out;
+  // this will be hard to animate =====
+  position: fixed;
+  width: 100%;
+  z-index: $z-index-header;
+// ====================================
+
+  animation: header-slide-down .2s ease-out;
   background: $red-dark;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 1em;
+  min-height: 3.5em;
   .box {
     width: 9em;
     height: 1em;
     margin-right: .5em;
-    animation: fade-in .2s ease-in forwards;
+    animation: header-fade-in .2s ease-in forwards;
     animation-delay: .3s;
     filter: opacity(0)
   }
@@ -64,6 +85,17 @@ header {
     width: 2em;
     height: 2em;
   }
+  nav {
+   background-image: linear-gradient(135deg, transparent, transparent 2.5em,  $red 2.5em );
+   display: flex;
+   align-self: stretch;
+   align-items: center;
+   color: white;
+   padding: 0em 1em 0em 4.4em;
+   animation: header-slide-right .2s ease-out forwards;
+   filter: opacity(0);
+   animation-delay: .4s;
+  }
 }
 
 .brand {
@@ -71,17 +103,8 @@ header {
   align-items: center;
 }
 
-nav {
- background-image: linear-gradient(135deg, transparent, transparent 2.5em,  $red 2.5em );
- display: flex;
- color: white;
- padding: 1em 1em 1em 4.4em;
- animation: slide-right .2s ease-out forwards;
- filter: opacity(0)
- animation-delay: .3s;
-}
 
-@keyframes slide-down {
+@keyframes header-slide-down {
   from {
     transform: translateY(-4em);
     filter: opacity(0);
@@ -91,18 +114,132 @@ nav {
   }
 }
 
-@keyframes fade-in {
+@keyframes header-fade-in {
   to {
     filter: opacity(1);
   }
 }
 
-@keyframes slide-right {
+@keyframes header-slide-right {
   from {
     transform: translateX(4em);
     filter: opacity(0);
   }
   to {
     filter: opacity(1);
+  }
+}
+
+
+
+
+// Main
+
+main {
+  padding: 4.5em 1.5em 0em 1.5em ;
+}
+
+
+// Cards
+
+.list {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 3.5em;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  padding: 1em;
+  z-index: $z-index-list;
+}
+
+.card {
+  padding: 1.5em;
+  margin-bottom: 1em;
+  .box {
+    margin-bottom: .5em;
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+  .box--gray-dark {
+    height: 2em;
+  }
+}
+
+
+
+
+// Detail
+.detail {
+  // display: none;
+  background: $gray-light;
+  position: absolute;
+  top: 3.5em;
+  left: 0;
+  height: calc(100vh - 3.5em);
+  right: 0;
+  z-index: $z-index-detail;
+  // padding: 1.5em;
+  // overflow: hidden;
+}
+
+.detail__header {
+  background: white;
+  padding: 2.5em 1.5em;
+  .box {
+    margin-bottom: .5em;
+    &:first-of-type {
+      min-height: 3em;
+    }
+    &:last-of-type {
+      margin: 2em 0 0 0;
+    }
+  }
+}
+
+.detail__body {
+  nav{
+    background: $gray-light;
+    position: sticky;
+    top: 3.5em;
+    z-index: $z-index-list;
+  }
+  ul{
+    margin: 0;
+    list-style: none;
+    display: flex;
+  }
+  li {
+    flex: 1 1 auto;
+    display: flex;
+    min-height: 6em;
+    a {
+      display: flex;
+      align-self: stretch;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+    .box { // Sorry for the specificty :p
+      width: 2em;
+      height: 2em;
+    }
+    .active {
+      background-image: linear-gradient(to bottom, $blue, $blue 5px, transparent 5px);
+      .box {
+        transform: scale(1.8);
+      }
+    }
+  }
+}
+
+.detail__content {
+  background: $gray-light;
+  padding: 1.5em;
+  .box {
+    margin-bottom: 1em;
   }
 }
