@@ -43,9 +43,9 @@ $red-dark:        #a30000;
   padding-top: 100%;
 }
 
-
 // Navbar
 header {
+  animation: slide-down .2s ease-out;
   background: $red-dark;
   display: flex;
   justify-content: space-between;
@@ -54,9 +54,13 @@ header {
   .box {
     width: 9em;
     height: 1em;
-    margin-right: .5em
+    margin-right: .5em;
+    animation: fade-in .2s ease-in forwards;
+    animation-delay: .3s;
+    filter: opacity(0)
   }
   .box--circle {
+    animation-delay: .2s;
     width: 2em;
     height: 2em;
   }
@@ -65,7 +69,6 @@ header {
 .brand {
   display: flex;
   align-items: center;
-  // background: orange;
 }
 
 nav {
@@ -73,4 +76,33 @@ nav {
  display: flex;
  color: white;
  padding: 1em 1em 1em 4.4em;
+ animation: slide-right .2s ease-out forwards;
+ filter: opacity(0)
+ animation-delay: .3s;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-4em);
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
+}
+
+@keyframes fade-in {
+  to {
+    filter: opacity(1);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(4em);
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
 }
