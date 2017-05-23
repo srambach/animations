@@ -1,0 +1,44 @@
+//
+// Animatioms
+// --------------------------------------------------
+
+$gray-light:      #ededed;
+$gray:            #d1d1d1;
+$gray-dark:       #bbbbbb;
+$red:             #cc0000;
+$red-dark:        #a30000;
+
+// Reset
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+// Box base
+.box {
+  width: 100%;
+  min-height: 1em;
+  background: yellow;
+}
+
+
+// Colors
+.box--red { background:          $red;        }
+.box--red-dark { background:     $red-dark;   }
+.box--gray { background:         $gray;       }
+.box--gray-dark{ background:     $gray-dark;  }
+.box--gray-light { background:   $gray-light; }
+.box--white { background:        white;       }
+
+
+// Shapes
+.box--circle {
+  border-radius: 50%;
+  padding-top: 100%;
+}
+
+.box--square {
+  padding-top: 100%;
+}

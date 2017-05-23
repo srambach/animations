@@ -1,0 +1,1 @@
+*{box-sizing:border-box;margin:0;padding:0}.box{width:100%;min-height:1em;background:yellow}.box--red{background:#c00}.box--red-dark{background:#a30000}.box--gray{background:#d1d1d1}.box--gray-dark{background:#bbb}.box--gray-light{background:#ededed}.box--white{background:white}.box--circle{border-radius:50%;padding-top:100%}.box--square{padding-top:100%}
