@@ -36,9 +36,41 @@ $red-dark:        #a30000;
 // Shapes
 .box--circle {
   border-radius: 50%;
-  padding-top: 100%;
+  // padding-top: 100%;
 }
 
 .box--square {
   padding-top: 100%;
+}
+
+
+// Navbar
+header {
+  background: $red-dark;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1em;
+  .box {
+    width: 9em;
+    height: 1em;
+    margin-right: .5em
+  }
+  .box--circle {
+    width: 2em;
+    height: 2em;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  // background: orange;
+}
+
+nav {
+ background-image: linear-gradient(135deg, transparent, transparent 2.5em,  $red 2.5em );
+ display: flex;
+ color: white;
+ padding: 1em 1em 1em 4.4em;
 }
