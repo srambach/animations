@@ -9,11 +9,19 @@ $red:             #cc0000;
 $red-dark:        #a30000;
 $blue:            #39a5dc;
 
+$z-index-login:   6000;
 $z-index-header:  5000;
 $z-index-list:    1000;
 $z-index-detail:  2000;
 
+
+
+
+
+// =============================
 // Reset
+// =============================
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,16 +34,17 @@ body {
 }
 
 
+
+
+// =============================
 // Box base
+// =============================
 .box {
   width: 100%;
   min-height: 1em;
-  background: yellow;
+  // background: yellow;
 }
 
-
-
-// Colors
 .box--red { background:          $red;        }
 .box--red-dark { background:     $red-dark;   }
 .box--gray { background:         $gray;       }
@@ -43,28 +52,62 @@ body {
 .box--gray-light { background:   $gray-light; }
 .box--white { background:        white;       }
 
+.box--circle { border-radius: 50%; }
+
+.box--square { padding-top: 100%; }
 
 
-// Shapes
-.box--circle {
-  border-radius: 50%;
+
+
+// =============================
+// Login/ Home
+// =============================
+
+.home__top-bg, .home__bottom-bg, .home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
-.box--square {
-  padding-top: 100%;
+.home {
+  background: white;
+  position: fixed;
+  z-index: $z-index-login;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  .box--circle {
+    width: 12em;
+    height: 12em;
+    z-index: 999999999;
+  }
+}
+
+.home__top-bg {
+  background-image: linear-gradient(135deg, $red, $red 50%, transparent 50% );
+  // transform: translateY(-12em);
+}
+
+.home__bottom-bg {
+  background-image: linear-gradient(135deg, transparent, transparent 50%, $gray-light 50% );
+  transform: translateY(28em);
 }
 
 
 
 
-// Navbar
+
+// =============================
+// header
+// =============================
+
 header {
-  // this will be hard to animate =====
   position: fixed;
   width: 100%;
   z-index: $z-index-header;
-// ====================================
-
   animation: header-slide-down .2s ease-out;
   background: $red-dark;
   display: flex;
@@ -86,15 +129,15 @@ header {
     height: 2em;
   }
   nav {
-   background-image: linear-gradient(135deg, transparent, transparent 2.5em,  $red 2.5em );
-   display: flex;
-   align-self: stretch;
-   align-items: center;
-   color: white;
-   padding: 0em 1em 0em 4.4em;
-   animation: header-slide-right .2s ease-out forwards;
-   filter: opacity(0);
-   animation-delay: .4s;
+    background-image: linear-gradient(135deg, transparent, transparent 2.5em,  $red 2.5em);
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    color: white;
+    padding: 0em 1em 0em 4.4em;
+    animation: header-slide-right .2s ease-out forwards;
+    filter: opacity(0);
+    animation-delay: .4s;
   }
 }
 
@@ -104,6 +147,7 @@ header {
 }
 
 
+// These are just placeholder animations, they should be transform into transitions (probably)
 @keyframes header-slide-down {
   from {
     transform: translateY(-4em);
@@ -133,14 +177,21 @@ header {
 
 
 
+
+// =============================
 // Main
+// =============================
 
 main {
   padding: 4.5em 1.5em 0em 1.5em ;
 }
 
 
-// Cards
+
+
+// =============================
+// List view: Cards
+// =============================
 
 .list {
   position: fixed;
@@ -156,6 +207,7 @@ main {
 }
 
 .card {
+  border-radius: .3em;
   padding: 1.5em;
   margin-bottom: 1em;
   .box {
@@ -172,9 +224,15 @@ main {
 
 
 
-// Detail
+
+// =============================
+// Detail view
+// =============================
+
 .detail {
-  // display: none;
+
+  display: none;
+
   background: $gray-light;
   position: absolute;
   top: 3.5em;
@@ -182,8 +240,6 @@ main {
   height: calc(100vh - 3.5em);
   right: 0;
   z-index: $z-index-detail;
-  // padding: 1.5em;
-  // overflow: hidden;
 }
 
 .detail__header {
@@ -205,7 +261,7 @@ main {
     background: $gray-light;
     position: sticky;
     top: 3.5em;
-    z-index: $z-index-list;
+    z-index: $z-index-detail;
   }
   ul{
     margin: 0;
@@ -223,7 +279,7 @@ main {
       justify-content: center;
       flex: 1;
     }
-    .box { // Sorry for the specificty :p
+    .box {
       width: 2em;
       height: 2em;
     }
@@ -239,7 +295,65 @@ main {
 .detail__content {
   background: $gray-light;
   padding: 1.5em;
+  position: relative;
   .box {
     margin-bottom: 1em;
+  }
+}
+
+
+// Detail view: Overlay
+
+.overlay {
+  background: white;
+  position: absolute;
+  z-index: $z-index-list;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1.5em;
+  // transform: translateY(100vh);
+
+  display: none;
+
+}
+
+.detail__inner-nav {
+  background: white;
+  z-index: $z-index-detail;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  min-height: 6em;
+  padding: 1.5em;
+
+  display: none;
+
+  .box {
+    margin:0 1em 0 0;
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+}
+
+.overlay__text {
+
+  display: none;
+
+}
+
+.overlay__thumbnails {
+  display: grid;
+
+  // display: none;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em 2em;
+  .box {
+    padding-top: 100%;
   }
 }
