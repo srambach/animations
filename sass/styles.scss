@@ -2,7 +2,7 @@
 // Animatioms
 // --------------------------------------------------
 
-$gray-light:      #ededed;
+$gray-light:      darken(#ededed, 5);
 $gray:            #d1d1d1;
 $gray-dark:       #bbbbbb;
 $red:             #cc0000;
@@ -51,7 +51,7 @@ body {
 .box--gray-dark{ background:     $gray-dark;  }
 .box--gray-light { background:   $gray-light; }
 .box--white { background:        white;       }
-
+.box--blue { background:         $blue;       }
 .box--circle { border-radius: 50%; }
 
 .box--square { padding-top: 100%; }
@@ -210,36 +210,72 @@ main {
   border-radius: .3em;
   padding: 1.5em;
   margin-bottom: 1em;
+  // transition: all .5s ease-in;
   .box {
     margin-bottom: .5em;
     &:last-of-type {
       margin: 0;
     }
   }
+
   .box--gray-dark {
     height: 2em;
   }
+
+  .card__marker {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    float: right;
+    margin: 5px;
+    background: $blue;
+  }
 }
 
+.card--clicked {
+  animation: card-embiggen .5s ease-in forwards;
+}
 
-
-
+@keyframes card-embiggen {
+  from {
+    filter: opacity(1);
+  }
+  to {
+    transform: translateY(-50em) scaleX(1.2) scaleY(3);
+    filter: opacity(0);
+  }
+}
 
 // =============================
 // Detail view
 // =============================
 
 .detail {
-
-  display: none;
-
   background: $gray-light;
   position: absolute;
   top: 3.5em;
   left: 0;
-  height: calc(100vh - 3.5em);
   right: 0;
+  height: calc(100vh - 3.5em);
   z-index: $z-index-detail;
+  transform: translateY(100vh);
+  filter: opacity(0);
+  transition: all .5s ease-out;
+}
+
+.detail--shown {
+  animation: detail-in .5s ease-out forwards;
+}
+
+@keyframes detail-in {
+  from {
+    filter: opacity(0);
+  }
+  to {
+    transform: translateY(0);
+    filter: opacity(1);
+  }
+
 }
 
 .detail__header {

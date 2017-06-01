@@ -36,7 +36,7 @@
 
 
   <main>
-    
+
     <!-- Detail page -->
 
     <div class="detail">
@@ -152,7 +152,9 @@
       </section>
 
       <section class="card box box--white">
-        <div class="box box--gray-dark"></div>
+        <div class="box box--gray-dark">
+          <div class="card__marker"></div>
+        </div>
         <div class="box box--gray"></div>
       </section>
 
@@ -194,6 +196,14 @@
 
   <div class="box box--gray box--circle"></div>
 -->
+
+<script>
+// make selected tab and tab contents active
+$(".card").click(function() {
+  $(this).addClass("card--clicked");
+  $(".detail").addClass("detail--shown");
+});
+</script>
 
 </body>
 </html>
