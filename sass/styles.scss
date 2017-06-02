@@ -387,11 +387,11 @@ main {
   top: 1.5em;
   left: 1.5em;
   right: 1.5em;
-  animation: .25s slide-out-to-left ease-out forwards;
+  animation: 1.25s slide-out-to-left ease-out forwards;
 }
 
 .overlay__text--shown {
-  animation: .25s slide-in-from-left ease-out forwards;
+  animation: 1.25s slide-in-from-left ease-out forwards;
 }
 
 .overlay__thumbnails {
@@ -400,7 +400,7 @@ main {
   top: 1.5em;
   left: 1.5em;
   right: 1.5em;
-  animation: .25s slide-out-to-right ease-out forwards;
+  animation: 1.25s slide-out-to-right ease-out forwards;
 
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em 2em;
@@ -409,7 +409,7 @@ main {
   }
 }
 .overlay__thumbnails--shown {
-  animation: .25s slide-in-from-right ease-out forwards;
+  animation: 1.25s slide-in-from-right ease-out forwards;
 }
 
 @keyframes slide-in-from-right {
@@ -429,18 +429,27 @@ main {
   }
 }
 @keyframes slide-out-to-right {
-  from {
+  0% {
     transform: translateX(0%);
   }
-  to {
+  99% {
     transform: translateX(110%);
+    width: auto;
   }
+  100% {
+    width:0;
+  }
+
 }
 @keyframes slide-out-to-left {
-  from {
+  0% {
     transform: translateX(0%);
-  }
-  to {
+}
+  99% {
     transform: translateX(-110%);
+    width: auto;
+  }
+  100% {
+    width:0;
   }
 }
