@@ -354,6 +354,9 @@ main {
   display: none;
 
 }
+.overlay--shown {
+  display: block;
+}
 
 .detail__inner-nav {
   background: white;
@@ -375,21 +378,69 @@ main {
     }
   }
 }
+.detail__inner-nav--shown {
+  display:flex;
+}
 
 .overlay__text {
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+  right: 1.5em;
+  animation: .25s slide-out-to-left ease-out forwards;
+}
 
-  display: none;
-
+.overlay__text--shown {
+  animation: .25s slide-in-from-left ease-out forwards;
 }
 
 .overlay__thumbnails {
   display: grid;
-
-  // display: none;
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+  right: 1.5em;
+  animation: .25s slide-out-to-right ease-out forwards;
 
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em 2em;
   .box {
     padding-top: 100%;
+  }
+}
+.overlay__thumbnails--shown {
+  animation: .25s slide-in-from-right ease-out forwards;
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-out-to-right {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(110%);
+  }
+}
+@keyframes slide-out-to-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-110%);
   }
 }

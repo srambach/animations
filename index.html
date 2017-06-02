@@ -50,9 +50,9 @@
       <div class="detail__body">
         <nav>
           <ul>
+            <li><a href="#"><div class="box box--white box--circle"></div></a></li>
+            <li><a href="#"><div class="box box--white box--circle"></div></a></li>
             <li><a href="#" class="active"><div class="box box--white box--circle"></div></a></li>
-            <li><a href="#"><div class="box box--white box--circle"></div></a></li>
-            <li><a href="#"><div class="box box--white box--circle"></div></a></li>
           </ul>
         </nav>
 
@@ -77,9 +77,9 @@
           <div class="box box--gray"></div>
           <div class="box box--gray"></div>
 
-          <div class="overlay">
+          <div class="overlay overlay--shown">
 
-            <div class="overlay__text">
+            <div class="overlay__text overlay__text--shown">
 
               <div class="box box--gray"></div>
               <div class="box box--gray"></div>
@@ -119,9 +119,11 @@
           </div>
 
         </div>
-        <div class="detail__inner-nav">
-          <div class="box box--gray-dark"></div>
-          <div class="box box--gray-dark"></div>
+        <div class="detail__inner-nav detail__inner-nav--shown">
+          <div class="box box--gray-dark button--thumbnail">
+            <div class="card__marker"></div>
+          </div>
+          <div class="box box--gray-dark button--text"></div>
         </div>
       </div>
     </div>
@@ -202,6 +204,18 @@
 $(".card").click(function() {
   $(this).addClass("card--clicked");
   $(".detail").addClass("detail--shown");
+});
+
+// show thumbnail in detail overlay
+$(".button--thumbnail").click(function() {
+  // $(this).addClass("card--clicked");
+  $(".overlay__text").removeClass("overlay__text--shown");
+  $(".overlay__thumbnails").addClass("overlay__thumbnails--shown");
+});
+// show text in detail overlay
+$(".button--text").click(function() {
+  $(".overlay__text").addClass("overlay__text--shown");
+  $(".overlay__thumbnails").removeClass("overlay__thumbnails--shown");
 });
 </script>
 
